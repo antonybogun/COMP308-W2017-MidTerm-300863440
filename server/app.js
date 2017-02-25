@@ -23,7 +23,7 @@ mongoose.connect(process.env.URI || config.URI);
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log("Conneced to MongoDB...");
+  console.log("Connected to MongoDB...");
 });
 
 // define routers
