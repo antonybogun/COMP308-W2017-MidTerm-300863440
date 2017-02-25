@@ -1,3 +1,10 @@
+/*
+ *   File-name: index.js
+ *   Author's name: Tony Bogun   
+ *   Student ID: 300863440
+ *   Web-site name: comp308-300863440.herokuapp.com/
+ */
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();

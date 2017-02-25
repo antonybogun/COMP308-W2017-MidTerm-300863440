@@ -1,3 +1,10 @@
+/*
+ *   File-name: server.js
+ *   Author's name: Tony Bogun   
+ *   Student ID: 300863440
+ *   Web-site name: comp308-300863440.herokuapp.com/
+ */
+
 let app = require('./server/app');
 let debug = require('debug')('comp308-w2017-midterm:server');
 let http = require('http');
@@ -52,9 +59,9 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  let bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -77,8 +84,8 @@ function onError(error) {
 
 function onListening() {
   let addr = server.address();
-  let bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  let bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
   debug('Listening on ' + bind);
 }

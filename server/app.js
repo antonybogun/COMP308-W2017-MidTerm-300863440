@@ -1,3 +1,10 @@
+/*
+ *   File-name: app.js
+ *   Author's name: Tony Bogun   
+ *   Student ID: 300863440
+ *   Web-site name: comp308-300863440.herokuapp.com/
+ */
+
 // modules required for the project
 let express = require('express');
 let path = require('path'); // part of node.js core
@@ -33,7 +40,9 @@ app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, '../client', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -44,20 +53,20 @@ app.use('/books', books);
 
 
 // Handle 404 Errors
-  app.use(function(req, res) {
-      res.status(400);
-     res.render('errors/404',{
-      title: '404: File Not Found'
-    });
+app.use(function (req, res) {
+  res.status(400);
+  res.render('errors/404', {
+    title: '404: File Not Found'
   });
+});
 
-  // Handle 500 Errors
-  app.use(function(error, req, res, next) {
-      res.status(500);
-      res.render('errors/500', {
-        title:'500: Internal Server Error',
-        error: error
-      });
+// Handle 500 Errors
+app.use(function (error, req, res, next) {
+  res.status(500);
+  res.render('errors/500', {
+    title: '500: Internal Server Error',
+    error: error
   });
+});
 
 module.exports = app;

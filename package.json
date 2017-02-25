@@ -33,17 +33,17 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/antonybogun/COMP308-W2017-MidTerm-300863440"
   },
   "keywords": [
     "NodeJS",
     "ExpressJS",
     "EJS"
   ],
-  "author": "Tom Tsiliopoulos",
+  "author": "Tony Bogun",
   "license": "ISC",
   "bugs": {
     "url": ""
   },
-  "homepage": ""
+  "homepage": "http://comp308-300863440.herokuapp.com/"
 }
