@@ -47,4 +47,5 @@ let options = ({
 
 UserSchema.plugin(passportLocalMongoose, options);
 
+// export UserSchema class to be available to import
 exports.User = mongoose.model('User', UserSchema);

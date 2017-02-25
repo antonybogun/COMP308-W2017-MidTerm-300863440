@@ -27,7 +27,7 @@ function requireAuth(req, res, next) {
   next();
 };
 
-/* GET books List page. READ */
+/* GET / - display book list */
 router.get('/', requireAuth, (req, res, next) => {
 
   // find all books in the books collection
