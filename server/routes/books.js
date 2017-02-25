@@ -15,6 +15,7 @@ let book = require('../models/books');
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
+
   // find all books in the books collection
   book.find((err, books) => {
     if (err) {
@@ -28,7 +29,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
-//  GET the Book Details page in order to add a new Book
+//  GET /add -  the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
 
   // render an empty form to add a new book
@@ -39,8 +40,9 @@ router.get('/add', (req, res, next) => {
 
 });
 
-// POST process the Book Details page and create a new Book - CREATE
+// POST /add - process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
+
   // create a new book object with attributes from form
   let newBook = book({
     "Title": req.body.title,
@@ -61,10 +63,11 @@ router.post('/add', (req, res, next) => {
   });
 });
 
-// GET the Book Details page in order to edit an existing Book
+// GET / - the Book Details page in order to edit an existing Book
 router.get('/:id', (req, res, next) => {
 
   try {
+
     // get a reference to the id from the url
     let id = mongoose.Types.ObjectId.createFromHexString(req.params.id);
 
@@ -74,7 +77,7 @@ router.get('/:id', (req, res, next) => {
         console.log(err);
         res.end(error);
       } else {
-        // show the book details view
+        // render the book details view
         res.render('books/details', {
           title: 'Book Details',
           books: books
@@ -87,12 +90,13 @@ router.get('/:id', (req, res, next) => {
   }
 });
 
-// POST - process the information passed from the details form and update the document
+// POST / - process the information passed from the details form and update the document
 router.post('/:id', (req, res, next) => {
 
   // get a reference to the id from the url
   let id = req.params.id;
 
+  // create an updated book object with attributes from form
   let updatedBook = book({
     "_id": id,
     "Title": req.body.title,
@@ -102,6 +106,7 @@ router.post('/:id', (req, res, next) => {
     "Genre": req.body.genre
   });
 
+  // update a book in the collection
   book.update({
     _id: id
   }, updatedBook, (err) => {
@@ -109,14 +114,14 @@ router.post('/:id', (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the game List
+      // refresh the book List
       res.redirect('/books');
     }
   });
 
 });
 
-// GET - process the delete by user id
+// GET /delete - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
 
   // get a reference to the id from the url

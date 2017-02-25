@@ -15,11 +15,14 @@ let bodyParser = require('body-parser');
 
 // import "mongoose" - required for DB Access
 let mongoose = require('mongoose');
-// URI
+
+// import URI from config
 let config = require('./config/db');
 
+// choosing connection string to mLab db if production, local db for development
 mongoose.connect(process.env.URI || config.URI);
 
+// connecting to db with error report if applicable
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -46,11 +49,9 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 
-
 // route redirects
 app.use('/', index);
 app.use('/books', books);
-
 
 // Handle 404 Errors
 app.use(function (req, res) {
