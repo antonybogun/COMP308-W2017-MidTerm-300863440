@@ -27,7 +27,6 @@ function requireAuth(req, res, next) {
   next();
 };
 
-
 // GET / -  home page. wildcard 
 router.get('/', (req, res, next) => {
   res.render('content/index', {
